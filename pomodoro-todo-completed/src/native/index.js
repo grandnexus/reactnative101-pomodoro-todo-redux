@@ -5,7 +5,7 @@ import { Router, Stack } from 'react-native-router-flux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import { StyleProvider } from 'native-base';
-import { AppLoading } from 'expo';
+import { AppLoading, Font } from 'expo';
 import getTheme from '../theme/components';
 import AppTheme from '../theme/variables/material';
 
@@ -20,10 +20,17 @@ class Root extends Component {
     };
   }
 
+  async componentDidMount() {
+    await Font.loadAsync({
+      'open-sans-bold': require('../../assets/fonts/OpenSans-Bold.ttf'),
+    });
+    this.setState({ isReady: true })
+  }
+
   render() {
-    // if (!this.state.isReady) {
-    //   return <AppLoading />;
-    // }
+    if (!this.state.isReady) {
+      return <AppLoading />;
+    }
     return (
       <Provider store={this.props.store}>
         <PersistGate loading={<Loading />} persistor={this.props.persistor}>
