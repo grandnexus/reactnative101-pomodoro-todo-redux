@@ -1,4 +1,4 @@
-// import common from "./common";
+import tasks from "./tasks";
 
 const rehydrated = (state = false, action) => {
   switch (action.type) {
@@ -11,5 +11,5 @@ const rehydrated = (state = false, action) => {
 
 export default {
   rehydrated,
-  // common
+  tasks
 };
